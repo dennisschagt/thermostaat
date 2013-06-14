@@ -17,4 +17,11 @@
         android:text="@string/changeWeekprogram"
         android:onClick="btnChangeWeekProgram" />
 
+    <NumberPicker
+        android:id="@+id/temperatureDigits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1" />
+
 </RelativeLayout>
