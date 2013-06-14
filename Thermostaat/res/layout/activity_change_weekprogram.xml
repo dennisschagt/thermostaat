@@ -1,16 +1,61 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ChangeWeekprogram" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <Button
+     android:id="@+id/button_change_sunday"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:text="@string/changeSunday"
+     android:onClick="changeDay" />
+    
+    <Button
+     android:id="@+id/button_change_monday"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:text="@string/changeMonday"
+     android:onClick="changeDay" />
+    
+    <Button
+     android:id="@+id/button_change_tuesday"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:text="@string/changeTuesday"
+     android:onClick="changeDay" />
+    
+    <Button
+     android:id="@+id/button_change_wednesday"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:text="@string/changeWednesday"
+     android:onClick="changeDay" />
+    
+    <Button
+     android:id="@+id/button_change_thursday"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:text="@string/changeThursday"
+     android:onClick="changeDay" />
+    
+    <Button
+     android:id="@+id/button_change_friday"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:text="@string/changeFriday"
+     android:onClick="changeDay" />
+    
+    <Button
+     android:id="@+id/button_change_saturday"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:text="@string/changeSaturday"
+     android:onClick="changeDay" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -26,6 +26,10 @@
             android:name="nl.tuestudent.thermostaat.ChangeWeekprogram"
             android:label="@string/title_activity_change_weekprogram" >
         </activity>
+        <activity
+            android:name="nl.tuestudent.thermostaat.ChangeDay"
+            android:label="@string/title_activity_change_day" >
+        </activity>
     </application>
 
 </manifest>
