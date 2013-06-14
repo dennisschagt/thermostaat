@@ -4,5 +4,7 @@
     <string name="app_name">Thermostaat</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="changeWeekprogram">Change weekprogram</string>
+    <string name="title_activity_change_weekprogram">ChangeWeekprogram</string>
 
 </resources>
