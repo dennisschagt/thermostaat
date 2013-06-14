@@ -24,4 +24,11 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/button1" />
 
+    <NumberPicker
+        android:id="@+id/temperatureDecimals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_toRightOf="@+id/temperatureDigits" />
+
 </RelativeLayout>

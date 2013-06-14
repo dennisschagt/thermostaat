@@ -18,6 +18,13 @@ public class MainActivity extends Activity {
 		temperatureDigits.setMinValue(5);
 		temperatureDigits.setWrapSelectorWheel(false);
 		temperatureDigits.setValue(22);
+		
+		String decimals[] = {",0", ",1", ",2", ",3", ",4", ",5", ",6", ",7", ",8", ",9"};
+		NumberPicker temperatureDecimals = (NumberPicker) findViewById(R.id.temperatureDecimals);
+		temperatureDecimals.setMaxValue(9);
+		temperatureDecimals.setMinValue(0);
+		temperatureDecimals.setWrapSelectorWheel(true);
+		temperatureDecimals.setDisplayedValues(decimals);
 	}
 	
 	public void btnChangeWeekProgram(View view) {
