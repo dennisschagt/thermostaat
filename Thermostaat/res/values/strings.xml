@@ -14,5 +14,6 @@
     <string name="changeFriday">Friday</string>
     <string name="changeSaturday">Saturday</string>
     <string name="title_activity_change_day">ChangeDay</string>
+    <string name="set_temperature">Set Temperature</string>
 
 </resources>

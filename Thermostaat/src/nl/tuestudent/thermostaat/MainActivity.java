@@ -26,5 +26,10 @@ public class MainActivity extends Activity{
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	public void onTempClick(View view) {
+		Intent i = new Intent(this, PickTemperature.class);
+		startActivity(i);
+	}
 
 }
