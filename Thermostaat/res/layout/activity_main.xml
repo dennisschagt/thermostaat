@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/switch1"
-        android:onClick="onTempClick"
+        android:onClick="tempChange"
         android:src="@android:drawable/ic_menu_compass" />
 
     <TextView
@@ -41,7 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignRight="@+id/button1"
-        android:onClick="onTempClick"
+        android:clickable="true"
+        android:onClick="tempChange"
         android:text="setting: 21\u2103"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -51,7 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/switch1"
         android:layout_toRightOf="@+id/imageButton1"
-        android:onClick="onTempClick"
+        android:clickable="true"
+        android:onClick="tempChange"
         android:text="20\u2103"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp"

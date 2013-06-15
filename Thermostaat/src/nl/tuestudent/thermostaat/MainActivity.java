@@ -3,10 +3,12 @@ package nl.tuestudent.thermostaat;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends Activity{
+public class MainActivity extends FragmentActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,12 @@ public class MainActivity extends Activity{
 		return true;
 	}
 	
-	public void onTempClick(View view) {
-		Intent i = new Intent(this, PickTemperature.class);
-		startActivity(i);
+	public void tempChange(View view) {
+//		System.out.println("woop");
+//		Intent i = new Intent(this, PickTemperature.class);
+//		startActivity(i);
+		    DialogFragment tempFragment = new PickTemperature();
+		    tempFragment.show(getSupportFragmentManager(), "missiles");
 	}
 
 }
