@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.NumberPicker;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements NumberPicker.OnValueChangeListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
 		temperatureDecimals.setMinValue(0);
 		temperatureDecimals.setWrapSelectorWheel(true);
 		temperatureDecimals.setDisplayedValues(decimals);
+		temperatureDecimals.setOnValueChangedListener(this);
 	}
 	
 	public void btnChangeWeekProgram(View view) {
@@ -37,5 +38,19 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+
+	@Override
+	public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+		if(picker == findViewById(R.id.temperatureDecimals)) {
+			NumberPicker temperatureDigits = (NumberPicker) findViewById(R.id.temperatureDigits);
+			int temperatureDigitsValue = temperatureDigits.getValue();
+			if(oldVal==9 && newVal==0) {
+				temperatureDigits.setValue(temperatureDigitsValue+1);
+			}
+			if(oldVal==0 && newVal==9) {
+				temperatureDigits.setValue(temperatureDigitsValue-1);
+			}
+		}
 	}
 }
