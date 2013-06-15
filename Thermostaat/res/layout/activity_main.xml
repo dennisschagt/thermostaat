@@ -8,27 +8,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageButton1"
+        android:layout_toRightOf="@+id/imageButton1"
+        android:text="20\u2103"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp"
+        android:typeface="monospace" />
+
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="btnChangeWeekProgram"
+        android:text="@string/changeWeekprogram" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/changeWeekprogram"
-        android:onClick="btnChangeWeekProgram" />
+        android:checked="true"
+        android:text="Use weekprogram" />
 
-    <NumberPicker
-        android:id="@+id/temperatureDigits"
+    <ImageButton
+        android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/button1" />
+        android:layout_below="@+id/switch1"
+        android:src="@android:drawable/ic_menu_compass" />
 
-    <NumberPicker
-        android:id="@+id/temperatureDecimals"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_toRightOf="@+id/temperatureDigits" />
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignRight="@+id/button1"
+        android:text="setting: 21\u2103"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
