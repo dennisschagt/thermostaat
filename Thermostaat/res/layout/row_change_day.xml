@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="1dp"
+        android:text="@+id/label"
+        android:textSize="15sp" >
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/nightLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:layout_toRightOf="@+id/label"
+        android:background="@drawable/background_night"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/dayNightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:text="TextView"
+            android:textColor="@color/FloralWhite"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/dayNightButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="0dp"
+            android:src="@drawable/ic_launcher"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dayLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label"
+        android:layout_below="@+id/nightLayout"
+        android:background="@drawable/background_day"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+</RelativeLayout>

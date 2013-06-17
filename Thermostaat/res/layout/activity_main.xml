@@ -27,7 +27,7 @@
         android:text="Use weekprogram" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/dayNightButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/switch1"
-        android:layout_toRightOf="@+id/imageButton1"
+        android:layout_toRightOf="@+id/dayNightButton"
         android:clickable="true"
         android:onClick="tempChange"
         android:text="20\u2103"
