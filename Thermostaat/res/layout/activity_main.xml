@@ -59,4 +59,13 @@
         android:textSize="40sp"
         android:typeface="monospace" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignLeft="@+id/button1"
+        android:onClick="setTempProfile"
+        android:text="@string/changeTempProfile" />
+
 </RelativeLayout>

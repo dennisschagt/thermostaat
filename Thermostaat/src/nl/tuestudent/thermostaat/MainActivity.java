@@ -33,5 +33,10 @@ public class MainActivity extends FragmentActivity{
 		    DialogFragment tempFragment = new PickTemperature();
 		    tempFragment.show(getSupportFragmentManager(), "thermostaat");
 	}
+	
+	public void setTempProfile(View view) {
+		Intent intent = new Intent (this, TempProfile.class);
+		startActivity(intent);
+	}
 
 }
