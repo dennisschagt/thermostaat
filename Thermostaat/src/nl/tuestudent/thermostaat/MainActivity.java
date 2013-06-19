@@ -30,11 +30,8 @@ public class MainActivity extends FragmentActivity{
 	}
 	
 	public void tempChange(View view) {
-//		System.out.println("woop");
-//		Intent i = new Intent(this, PickTemperature.class);
-//		startActivity(i);
 		    DialogFragment tempFragment = new PickTemperature();
-		    tempFragment.show(getSupportFragmentManager(), "missiles");
+		    tempFragment.show(getSupportFragmentManager(), "thermostaat");
 	}
 
 }

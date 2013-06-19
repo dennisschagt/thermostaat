@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.support.v4.app.DialogFragment;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 public class LazyAdapter extends ArrayAdapter<String>{
@@ -28,6 +32,5 @@ public class LazyAdapter extends ArrayAdapter<String>{
 	public boolean hasStableIds() {
 		return true;
 	}
-
 }
 

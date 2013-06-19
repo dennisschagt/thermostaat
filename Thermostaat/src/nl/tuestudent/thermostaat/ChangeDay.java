@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ChangeDay extends Activity {
+public class ChangeDay extends FragmentActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,28 @@ public class ChangeDay extends Activity {
 		}
 		
 		LazyAdapter timeAdapter = new LazyAdapter(this,
-				android.R.layout.simple_list_item_1, timeAL);
+				android.R.layout.simple_list_item_activated_1, timeAL);
 		
 		timeList.setAdapter(timeAdapter);
+		//timeList.setClickable(true);
+		
+		
+		//item click handler
+		
+		timeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				//show add time menu
+				Log.d("thermostaat", "JE HEBT OP EEN ITEM GECLICKED: " + position);
+				DialogFragment tempFrag = new PickDayNight();
+				tempFrag.show(getSupportFragmentManager(), "kjljnjkjhjftfuhjvjuyg");
+				
+				//TODO send the time (position of item you clicked on) to the dialog so it can use that as default dialog
+				
+			}
+		});
 	}
 
 	@Override

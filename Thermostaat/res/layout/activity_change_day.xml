@@ -5,40 +5,33 @@
     android:orientation="vertical"
     tools:context=".ChangeDay" >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#888888" >
+
+        <TextView
+            android:id="@+id/t_day_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="DayName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="ScrollViewSize" >
+        android:layout_height="wrap_content"
+        >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#888888" >
-
-            <TextView
-                android:id="@+id/t_day_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="DayName"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                tools:ignore="HardcodedText" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ListView
+            android:id="@+id/timeList"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
 
-            <ListView
-                android:id="@+id/timeList"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-            </ListView>
-        </LinearLayout>
-
+        </ListView>
     </LinearLayout>
 
 </LinearLayout>
