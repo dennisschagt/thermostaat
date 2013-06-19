@@ -8,15 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="btnChangeWeekProgram"
-        android:text="@string/changeWeekprogram" />
-
     <Switch
         android:id="@+id/switch1"
         android:layout_width="match_parent"
@@ -25,6 +16,16 @@
         android:layout_alignParentTop="true"
         android:checked="true"
         android:text="Use weekprogram" />
+    
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Status message textview"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <ImageButton
         android:id="@+id/dayNightButton"
@@ -58,5 +59,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp"
         android:typeface="monospace" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/statusTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:onClick="btnChangeWeekProgram"
+        android:text="@string/changeWeekprogram" />
 
 </RelativeLayout>
