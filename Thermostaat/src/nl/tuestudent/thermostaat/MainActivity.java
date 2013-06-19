@@ -49,6 +49,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 					}
 					weekProgramSW.setChecked(weekProgramState);
 					// Request for weekProgram
+					statusTV.setText("Retrieving week program");
 		            new CommunicationClass(this, "weekProgram", "GET");
 				}
 			}
@@ -92,7 +93,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            statusTV.setText("Retrieving week program");
+            statusTV.setText("Retrieving week program state");
             // Request for weekProgramState
             new CommunicationClass(this, "weekProgramState", "GET");
         } else {
