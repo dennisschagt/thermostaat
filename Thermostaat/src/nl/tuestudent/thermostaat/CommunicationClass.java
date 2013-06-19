@@ -62,17 +62,20 @@ public class CommunicationClass {
 	// a string.
 	private String downloadUrl(String myurl, String method, String putData) throws IOException {
 		InputStream is = null;
+		OutputStreamWriter os = null;
+		HttpURLConnection conn = null;
 		try {
 			URL url = new URL(myurl);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn = (HttpURLConnection) url.openConnection();
 			conn.setReadTimeout(10000 /* milliseconds */);
 			conn.setConnectTimeout(15000 /* milliseconds */);
 			conn.setRequestMethod(method);
+			conn.setRequestProperty("Connection", "close"); // Disable keep-alive
 			conn.setDoInput(true);
 			if(method.equals("PUT")) {
-				OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-				out.write(putData);
-				out.close();
+				os = new OutputStreamWriter(conn.getOutputStream());
+				os.write(putData);
+				os.close();
 				conn.getInputStream();
 				return "PUT ENDED";
 			} else if (method.equals("GET")) {
@@ -91,7 +94,13 @@ public class CommunicationClass {
 		} finally {
 			if (is != null) {
 				is.close();
-			} 
+			}
+			if (os != null) {
+				os.close();
+			}
+			if (conn != null) {
+				conn.disconnect();
+			}
 		}
 	}
 	
