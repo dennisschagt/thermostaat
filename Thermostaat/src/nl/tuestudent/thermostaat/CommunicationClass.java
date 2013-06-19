@@ -9,8 +9,8 @@ import java.net.URL;
 import android.os.AsyncTask;
 
 public class CommunicationClass {
-	final private String SERVER_URL = "http://192.168.1.201:1234/";
-	//final private String SERVER_URL = "http://wwwis.win.tue.nl:10030/";
+	//final private String SERVER_URL = "http://192.168.1.201:1234/";
+	final private String SERVER_URL = "http://wwwis.win.tue.nl:10030/";
 	private String content;
 	private String function;
 	private String method;

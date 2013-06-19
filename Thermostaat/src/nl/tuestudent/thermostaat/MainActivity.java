@@ -10,8 +10,10 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult{
 	String weekProgram = null; // XML
@@ -99,6 +101,18 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
         } else {
         	statusTV.setText("No network connection available");
         }
+        
+        weekProgramSW.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String command;
+                if(isChecked) {
+                	command = "<week_program_state>on</week_program_state>";
+                } else {
+                	command = "<week_program_state>off</week_program_state>";
+                }
+                new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", command);
+            }
+        });
 	}
 	
 	@Override
