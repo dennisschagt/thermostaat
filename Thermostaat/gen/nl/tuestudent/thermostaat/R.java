@@ -239,6 +239,8 @@ public final class R {
         public static final int title_activity_change_day=0x7f06000c;
         public static final int title_activity_change_weekprogram=0x7f060004;
         public static final int title_activity_temp_profile=0x7f06000f;
+        public static final int toggle_weekprogram_off=0x7f060010;
+        public static final int toggle_weekprogram_on=0x7f060011;
     }
     public static final class style {
         /** 

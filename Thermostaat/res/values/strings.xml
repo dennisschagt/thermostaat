@@ -52,5 +52,7 @@
     </string-array>
     <string name="changeTempProfile">Change Temperature Profile</string>
     <string name="title_activity_temp_profile">Temperature Profile Settings</string>
+    <string name="toggle_weekprogram_off">The weekprogram is now off</string>
+    <string name="toggle_weekprogram_on">The weekprogram is now on</string>
 
 </resources>

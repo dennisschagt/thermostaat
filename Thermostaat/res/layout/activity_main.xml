@@ -24,7 +24,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:checked="true"
-        android:text="Use weekprogram" />
+        android:onClick="switchSetWeekProgram"
+        android:text="Use weekprogram"
+        android:textOff="NO"
+        android:textOn="YES"
+        tools:ignore="HardcodedText" />
 
     <ImageButton
         android:id="@+id/dayNightButton"
@@ -33,7 +37,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/switch1"
         android:onClick="tempChange"
-        android:src="@android:drawable/ic_menu_compass" />
+        android:src="@android:drawable/ic_menu_compass" android:contentDescription="day/night"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -44,7 +48,8 @@
         android:clickable="true"
         android:onClick="tempChange"
         android:text="setting: 21\u2103"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/day_spacer"
@@ -57,7 +62,8 @@
         android:text="20\u2103"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp"
-        android:typeface="monospace" />
+        android:typeface="monospace"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/button2"
