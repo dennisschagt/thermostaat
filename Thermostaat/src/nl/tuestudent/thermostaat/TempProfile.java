@@ -14,6 +14,7 @@ public class TempProfile extends Activity implements CommunicationClass.SubmitRe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_change_temp_profile);
 		
+		// TODO: Set the numberpickers to the current day/night temperature
 		t1 = (NumberPicker) this.findViewById(R.id.numberPicker1);
 		t1.setMinValue(5);
 		t1.setMaxValue(30);
