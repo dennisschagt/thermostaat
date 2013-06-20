@@ -17,7 +17,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult{
+public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult, PickTemperature.OnTemperatureSelected{
 	String weekProgram = null; // XML
 	String currentTemperature = null; // XML
 	Boolean weekProgramState = false; // true=on, false=off
@@ -25,8 +25,15 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	
 	TextView statusTV;
 	TextView currentTempTV;
+	TextView tempSettingTV;
 	
 	private Handler mHandler = new Handler();
+	
+	@Override
+	public void submitTemperature(String temperature) {
+		tempSettingTV.setText("Setting: "+temperature);
+		new CommunicationClass(this, "currentTemperature", "PUT", "<current_temperature>" + temperature +  "</current_temperature>");
+	}
 	
 	@Override
 	public void submitResult(String function, String method, String contents) {
@@ -64,7 +71,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 					//statusTV.setText("Error obtaining the current temperature");
 				} else {
 					currentTemperature = contents;
-					// TODO: Should use an xml parser instead
+					// TODO: Should probably use an xml parser instead
 					int begin = 21;
 					int end = currentTemperature.length()-22;
 					String temperature = currentTemperature.substring(begin, end);
@@ -98,6 +105,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 
 		statusTV = (TextView) findViewById(R.id.statusTextView);
 		currentTempTV = (TextView) findViewById(R.id.day_spacer);
+		tempSettingTV = (TextView) findViewById(R.id.textView2);
 		
 		// Check network status
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

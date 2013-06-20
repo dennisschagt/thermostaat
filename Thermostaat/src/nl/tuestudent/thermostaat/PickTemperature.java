@@ -11,6 +11,10 @@ import android.widget.NumberPicker;
 
 public class PickTemperature extends DialogFragment {
 	
+	public interface OnTemperatureSelected {
+		void submitTemperature(String temperature);
+	}
+	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 	    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -27,7 +31,12 @@ public class PickTemperature extends DialogFragment {
 	           .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 	               @Override
 	               public void onClick(DialogInterface dialog, int id) {
-	                   // pass temp to main activity and set it etc
+	                   // pass temperature to main activity
+	            	   OnTemperatureSelected tempSubmitter = (OnTemperatureSelected) getActivity();
+	            	   NumberPicker t1 = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
+	            	   NumberPicker t2 = (NumberPicker) view.findViewById(R.id.tempDigitNumberPicker);
+	            	   String temperature = ((Integer)t1.getValue()).toString() + "." + ((Integer)t2.getValue()).toString();
+	            	   tempSubmitter.submitTemperature(temperature);
 	               }
 	           })
 	           .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
