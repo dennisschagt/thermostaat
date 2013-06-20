@@ -37,8 +37,10 @@ public class PickTemperature extends DialogFragment {
 	           });      
 	    
 	    NumberPicker t1 = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
-		t1.setMinValue(15);
+		t1.setMinValue(5);
 		t1.setMaxValue(30);
+		t1.setValue(21);
+		t1.setWrapSelectorWheel(false);
 	    NumberPicker t2 = (NumberPicker) view.findViewById(R.id.tempDigitNumberPicker);
 		t2.setMinValue(0);
 		t2.setMaxValue(9);
