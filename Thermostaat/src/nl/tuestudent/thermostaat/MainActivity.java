@@ -26,7 +26,6 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	
 	TextView statusTV;
 	TextView currentTempTV;
-	Switch weekProgramSW;
 	
 	private Handler mHandler = new Handler();
 	
@@ -52,7 +51,8 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 					} else {
 						weekProgramState = false;
 					}
-					weekProgramSW.setChecked(weekProgramState);
+					final Switch s = (Switch)findViewById(R.id.switch1);
+					s.setChecked(weekProgramState);
 					// Request for weekProgram
 					statusTV.setText("Retrieving week program");
 		            new CommunicationClass(this, "weekProgram", "GET");
@@ -101,11 +101,8 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		     }
 		 });
 
-
-		
 		statusTV = (TextView) findViewById(R.id.statusTextView);
 		currentTempTV = (TextView) findViewById(R.id.day_spacer);
-		weekProgramSW = (Switch) findViewById(R.id.switch1);
 		
 		// Check network status
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -117,18 +114,6 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
         } else {
         	statusTV.setText("No network connection available");
         }
-        
-        weekProgramSW.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String command;
-                if(isChecked) {
-                	command = "<week_program_state>on</week_program_state>";
-                } else {
-                	command = "<week_program_state>off</week_program_state>";
-                }
-                new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", command);
-            }
-        });
 	}
 	
 	@Override
@@ -154,7 +139,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	public void switchSetWeekProgram(View view) {
 		boolean on = ((Switch) view).isChecked();
 		
-		Toast t = Toast.makeText(this, "", 10);
+		Toast t = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 		t.setGravity(Gravity.CENTER, 0, 0);
 		if(on) {
 			t.setText(R.string.toggle_weekprogram_on);
@@ -162,6 +147,14 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 			t.setText(R.string.toggle_weekprogram_off);
 		}
 		t.show();
+		
+		String command;
+        if(on) {
+        	command = "<week_program_state>on</week_program_state>";
+        } else {
+        	command = "<week_program_state>off</week_program_state>";
+        }
+        new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", command);
 	}
 
 	@Override
