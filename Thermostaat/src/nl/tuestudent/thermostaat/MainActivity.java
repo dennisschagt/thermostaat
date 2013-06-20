@@ -22,7 +22,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	String currentTemperature = null; // XML
 	Boolean weekProgramState = false; // true=on, false=off
 	Boolean activityInFront = false;
-	String settingTemperature = "21.0";
+	String settingTemperature = "14.0";
 	
 	TextView statusTV;
 	TextView currentTempTV;

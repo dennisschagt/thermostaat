@@ -30,7 +30,7 @@ public class PickDayNight extends DialogFragment {
 	               public void onClick(DialogInterface dialog, int id) {
 	                  //do shit
 	               }
-	           });      
+	           });
 	    return builder.create();
 	}
 	

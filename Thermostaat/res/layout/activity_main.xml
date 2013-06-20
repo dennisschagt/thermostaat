@@ -49,8 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/switch1"
+        android:contentDescription="day/night"
         android:onClick="tempChange"
-        android:src="@android:drawable/ic_menu_compass" android:contentDescription="day/night"/>
+        android:src="@android:drawable/ic_menu_compass"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView2"
@@ -60,7 +62,7 @@
         android:layout_alignParentRight="true"
         android:clickable="true"
         android:onClick="tempChange"
-        android:text="setting: 21\u2103"
+        android:text="setting: 14\u2103"
         android:textAppearance="?android:attr/textAppearanceSmall"
         tools:ignore="HardcodedText" />
 

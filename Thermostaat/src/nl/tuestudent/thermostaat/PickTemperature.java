@@ -8,7 +8,6 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
-import android.widget.Toast;
 
 public class PickTemperature extends DialogFragment {
 	
@@ -57,6 +56,9 @@ public class PickTemperature extends DialogFragment {
 		t2.setMinValue(0);
 		t2.setMaxValue(9);
 		t2.setValue(Integer.parseInt(settingTemperature.substring(settingTemperature.indexOf(".")+1)));
+		
+		// Quite handy for testing the formatting of a short string
+		// Toast.makeText(getActivity(), "Test string", Toast.LENGTH_SHORT).show();
 		
 		return builder.create();
 	}
