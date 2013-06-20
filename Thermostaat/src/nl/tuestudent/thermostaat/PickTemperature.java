@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 public class PickTemperature extends DialogFragment {
 	
@@ -17,6 +18,8 @@ public class PickTemperature extends DialogFragment {
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		final String settingTemperature = getArguments().getString("settingTemperature");
+		
 	    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 	    // Get the layout inflater
 	    LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -48,11 +51,12 @@ public class PickTemperature extends DialogFragment {
 	    NumberPicker t1 = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
 		t1.setMinValue(5);
 		t1.setMaxValue(30);
-		t1.setValue(21);
+		t1.setValue(Integer.parseInt(settingTemperature.substring(0, settingTemperature.indexOf("."))));
 		t1.setWrapSelectorWheel(false);
 	    NumberPicker t2 = (NumberPicker) view.findViewById(R.id.tempDigitNumberPicker);
 		t2.setMinValue(0);
 		t2.setMaxValue(9);
+		t2.setValue(Integer.parseInt(settingTemperature.substring(settingTemperature.indexOf(".")+1)));
 		
 		return builder.create();
 	}

@@ -22,6 +22,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	String currentTemperature = null; // XML
 	Boolean weekProgramState = false; // true=on, false=off
 	Boolean activityInFront = false;
+	String settingTemperature = "21.0";
 	
 	TextView statusTV;
 	TextView currentTempTV;
@@ -31,6 +32,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	
 	@Override
 	public void submitTemperature(String temperature) {
+		settingTemperature = temperature;
 		tempSettingTV.setText("Setting: "+temperature);
 		new CommunicationClass(this, "currentTemperature", "PUT", "<current_temperature>" + temperature +  "</current_temperature>");
 	}
@@ -169,6 +171,9 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	
 	public void tempChange(View view) {
 		    DialogFragment tempFragment = new PickTemperature();
+		    Bundle args = new Bundle();
+		    args.putString("settingTemperature", settingTemperature);
+		    tempFragment.setArguments(args);
 		    tempFragment.show(getSupportFragmentManager(), "thermostaat");
 	}
 	
