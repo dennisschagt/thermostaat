@@ -18,8 +18,7 @@
         android:layout_marginBottom="52dp"
         android:layout_toLeftOf="@+id/timePicker2"
         android:text="Start from:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        tools:ignore="HardcodedText" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Switch
         android:id="@+id/switch1"

@@ -10,7 +10,7 @@ import android.os.AsyncTask;
 
 public class CommunicationClass {
 	//final private String SERVER_URL = "http://192.168.1.201:1234/";
-	final private String SERVER_URL = "http://wwwis.win.tue.nl:10030/";
+	final private static String SERVER_URL = "http://wwwis.win.tue.nl:10030/";
 	private String content;
 	private String function;
 	private String method;
@@ -20,11 +20,11 @@ public class CommunicationClass {
 		public void submitResult(String function, String method, String contents);
 	}
 	
-	CommunicationClass(SubmitResult event, String func, String methode) {
+	public CommunicationClass(SubmitResult event, String func, String methode) {
 		this(event, func, methode, "");
 	}
 	
-	CommunicationClass(SubmitResult event, String func, String methode, String putData) {
+	public CommunicationClass(SubmitResult event, String func, String methode, String putData) {
 		function = func;
 		method = methode;
 		SR = event;

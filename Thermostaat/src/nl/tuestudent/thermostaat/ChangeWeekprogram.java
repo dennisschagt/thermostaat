@@ -51,10 +51,5 @@ public class ChangeWeekprogram extends Activity {
 		getMenuInflater().inflate(R.menu.change_weekprogram, menu);
 		return true;
 	}
-	
-	public void setTempProfile(View view) {
-		Intent intent = new Intent (this, TempProfile.class);
-		startActivity(intent);
-	}
 
 }

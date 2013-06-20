@@ -173,7 +173,7 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f0a0023;
-        public static final int button1=0x7f0a0015;
+        public static final int button1=0x7f0a0019;
         public static final int button2=0x7f0a001a;
         public static final int button_change_friday=0x7f0a0013;
         public static final int button_change_monday=0x7f0a000f;
@@ -183,9 +183,9 @@ public final class R {
         public static final int button_change_tuesday=0x7f0a0010;
         public static final int button_change_wednesday=0x7f0a0011;
         public static final int dayLayout=0x7f0a0022;
-        public static final int dayNightButton=0x7f0a0018;
+        public static final int dayNightButton=0x7f0a0017;
         public static final int dayNightText=0x7f0a0020;
-        public static final int day_spacer=0x7f0a0019;
+        public static final int day_spacer=0x7f0a0018;
         public static final int imageView1=0x7f0a0021;
         public static final int label=0x7f0a001e;
         public static final int linearLayout1=0x7f0a0002;
@@ -195,8 +195,8 @@ public final class R {
         public static final int numberPicker2=0x7f0a0006;
         public static final int numberPicker3=0x7f0a000a;
         public static final int numberPicker4=0x7f0a000c;
-        public static final int statusTextView=0x7f0a0017;
-        public static final int switch1=0x7f0a0016;
+        public static final int statusTextView=0x7f0a0016;
+        public static final int switch1=0x7f0a0015;
         public static final int t_day_name=0x7f0a0000;
         public static final int tempDigitNumberPicker=0x7f0a001d;
         public static final int tempNumberPicker=0x7f0a001c;
