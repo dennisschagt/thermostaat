@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
 public class PickTemperature extends DialogFragment {
@@ -17,12 +16,12 @@ public class PickTemperature extends DialogFragment {
 	    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 	    // Get the layout inflater
 	    LayoutInflater inflater = getActivity().getLayoutInflater();
-	    View view = inflater.inflate(R.layout.dialog_pick_temperature, null);
+	    final View view = inflater.inflate(R.layout.dialog_pick_temperature, null);
 	    
 	    
 	    // Inflate and set the layout for the dialog
 	    // Pass null as the parent view because its going in the dialog layout
-	    builder.setView(inflater.inflate(R.layout.dialog_pick_temperature, null))
+	    builder.setView(view)
 	    
 	    // Add action buttons
 	           .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -37,14 +36,12 @@ public class PickTemperature extends DialogFragment {
 	               }
 	           });      
 	    
-
-	    //TODO make this work
-		NumberPicker t = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
-		t.setMinValue(15);
-		t.setMaxValue(30);
-		t = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
-		t.setMinValue(0);
-		t.setMaxValue(9);
+	    NumberPicker t1 = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
+		t1.setMinValue(15);
+		t1.setMaxValue(30);
+	    NumberPicker t2 = (NumberPicker) view.findViewById(R.id.tempDigitNumberPicker);
+		t2.setMinValue(0);
+		t2.setMaxValue(9);
 		
 		return builder.create();
 	}

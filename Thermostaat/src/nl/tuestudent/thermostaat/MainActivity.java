@@ -15,7 +15,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult{
@@ -84,10 +83,6 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 			new CommunicationClass(MainActivity.this, "currentTemperature", "GET");
 		}
 	};
-
-	
-	
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -148,13 +143,13 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		}
 		t.show();
 		
-		String command;
+		String xmlCommand;
         if(on) {
-        	command = "<week_program_state>on</week_program_state>";
+        	xmlCommand = "<week_program_state>on</week_program_state>";
         } else {
-        	command = "<week_program_state>off</week_program_state>";
+        	xmlCommand = "<week_program_state>off</week_program_state>";
         }
-        new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", command);
+        new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", xmlCommand);
 	}
 
 	@Override

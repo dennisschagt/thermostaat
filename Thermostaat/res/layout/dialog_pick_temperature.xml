@@ -18,7 +18,8 @@
         android:paddingTop="40dp"
         android:text=","
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="50sp" />
+        android:textSize="50sp"
+        tools:ignore="HardcodedText" />
 
     <NumberPicker
         android:id="@+id/tempDigitNumberPicker"
@@ -34,6 +35,7 @@
         android:paddingTop="38dp"
         android:text="\u2103"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="60sp" />
+        android:textSize="60sp"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>
