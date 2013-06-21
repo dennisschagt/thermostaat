@@ -2,5 +2,5 @@
        android:shape="rectangle">
   <solid
       android:width="1dp"
-      android:color="@color/DarkBlue" />
+      android:color="@color/Night" />
 </shape>

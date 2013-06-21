@@ -16,7 +16,7 @@ public class ChangeWeekprogram extends Activity {
 	}
 	
 	public void changeDay(View view) {
-		Intent intent = new Intent(this, ChangeDay.class);
+		Intent intent = new Intent(this, ChangeDay2.class);
 	    String message = "";
 	    switch(view.getId()) {
 	    case R.id.button_change_sunday:

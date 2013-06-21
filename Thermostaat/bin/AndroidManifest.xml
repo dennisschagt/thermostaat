@@ -32,6 +32,10 @@
         <activity
             android:name="nl.tuestudent.thermostaat.ChangeDay"
             android:label="@string/title_activity_change_day" >
+        </activity>        
+        <activity
+            android:name="nl.tuestudent.thermostaat.ChangeDay2"
+            android:label="@string/title_activity_change_day" >
         </activity>
                 <activity
             android:name="nl.tuestudent.thermostaat.TempProfile"
