@@ -55,6 +55,12 @@ public class DayProgram implements CommunicationClass.SubmitResult {
 		public void setMin(int min) {
 			this.min = min;
 		}
+		
+		public String toXML() {
+			String time = String.format("%02d:%02d",this.hour, this.min);
+			return "<switch type=\"" + this.type + "\" state=\"" + this.state + "\">" 
+					+ time + "</switch>\n";
+		}
 	}
 	
 	//keep in mind that dayXMLLines[0] == day tag!!
@@ -115,6 +121,14 @@ public class DayProgram implements CommunicationClass.SubmitResult {
 		}
 	}
 
+	public String toXML() {
+		String ret = "<day name=\"" + this.name + "\">\n";
+		for(ProgramSwitch ps : switches) {
+			ret += ps.toXML();
+		}
+		ret += "</day>\n";
+		return ret;
+	}
 	@Override
 	public void submitResult(String function, String method, String contents) {
 		// TODO Auto-generated method stub
