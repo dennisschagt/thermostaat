@@ -124,36 +124,40 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 				}
 			}
 		}
-		if(function.equals("time")) {
-				if(contents.equals("Error")) {
-					statusTV.setText("Error obtaining the current time");
-				}
-				
+		if (function.equals("time")) {
+			if (contents.equals("Error")) {
+				statusTV.setText("Error obtaining the current time");
+			} else {
+
 				currentTime = contents;
 				String time = currentTime.replaceAll("</?time>", "");
 				timeTV.setText("Time: " + time);
-				if(activityInFront) {
+				if (activityInFront) {
 					mHandler.removeCallbacks(mUpdateTimeRequest);
 					mHandler.postDelayed(mUpdateTimeRequest, 1000);
 				}
-			DayProgram dp = weekProg.findDayProgram(day);
-			String[] hourmin = time.split(":");
-			int hour= Integer.parseInt(hourmin[0]);
-			int min =  Integer.parseInt(hourmin[1]);
+				DayProgram dp = weekProg.findDayProgram(day);
+				String[] hourmin = time.split(":");
+				int hour = Integer.parseInt(hourmin[0]);
+				int min = Integer.parseInt(hourmin[1]);
 
-			String type = dp.getTypeAtTime(hour, min);
-			
-			ImageButton ib = (ImageButton) findViewById(R.id.dayNightButton);
-			if(weekProgramState) {
-				if(type.equals("day")) {
-					ib.setImageDrawable(getResources().getDrawable(R.drawable.dag));
+				String type = dp.getTypeAtTime(hour, min);
+
+				ImageButton ib = (ImageButton) findViewById(R.id.dayNightButton);
+				if (weekProgramState) {
+					if (type.equals("day")) {
+						ib.setImageDrawable(getResources().getDrawable(
+								R.drawable.dag));
+					} else {
+						ib.setImageDrawable(getResources().getDrawable(
+								R.drawable.nacht));
+					}
 				} else {
-					ib.setImageDrawable(getResources().getDrawable(R.drawable.nacht));
+					ib.setImageDrawable(getResources().getDrawable(
+							R.drawable.vakantie));
 				}
-			} else {
-				ib.setImageDrawable(getResources().getDrawable(R.drawable.vakantie));
+				ib.invalidate();
 			}
-			ib.invalidate();
 		}
 		if(function.equals("day")) {
 			day = contents.replaceAll("</?current_day>", "");

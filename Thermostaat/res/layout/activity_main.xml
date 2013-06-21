@@ -96,6 +96,7 @@
         android:onClick="tempChange"
         android:text="Setting: -"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="12sp"
         tools:ignore="HardcodedText" />
 
     <TextView
