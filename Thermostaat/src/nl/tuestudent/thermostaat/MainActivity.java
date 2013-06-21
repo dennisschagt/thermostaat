@@ -1,5 +1,6 @@
 package nl.tuestudent.thermostaat;
 
+import nl.tuestudent.thermostaat.data.DayProgram;
 import nl.tuestudent.thermostaat.data.WeekProgram;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,11 +10,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.TextView;
@@ -25,6 +28,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	public static WeekProgram weekProg = null;
 	
 	String weekProgram = null; // XML
+	String day = "Sunday"; //XML
 	String currentTemperature = null; // XML
 	String currentTime = "<time>00:00</time>"; // XML
 	String dayTemperature = "<day_temperature>19.5</day_temperature>"; // XML
@@ -121,18 +125,38 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 			}
 		}
 		if(function.equals("time")) {
-			if(method.equals("GET")) {
 				if(contents.equals("Error")) {
 					statusTV.setText("Error obtaining the current time");
-				} else {
-					currentTime = contents;
-					timeTV.setText("Time: " + currentTime.replaceAll("</?time>", ""));
 				}
+				
+				currentTime = contents;
+				String time = currentTime.replaceAll("</?time>", "");
+				timeTV.setText("Time: " + time);
 				if(activityInFront) {
 					mHandler.removeCallbacks(mUpdateTimeRequest);
 					mHandler.postDelayed(mUpdateTimeRequest, 1000);
 				}
+			ImageButton ib = (ImageButton)findViewById(R.id.dayNightButton);
+			DayProgram dp = weekProg.findDayProgram(day);
+			String[] hourmin = time.split(":");
+			int hour= Integer.parseInt(hourmin[0]);
+			int min =  Integer.parseInt(hourmin[1]);
+
+			String type = dp.getTypeAtTime(hour, min);
+			
+			Log.d("type",type);
+			if(type.equals("day")) {
+				ib.setImageDrawable(getResources().getDrawable(R.drawable.dag));
+			} else {
+				ib.setImageDrawable(getResources().getDrawable(R.drawable.nacht));
 			}
+			if(!weekProgramState) {
+				ib.setImageDrawable(getResources().getDrawable(R.drawable.vakantie));
+			}
+			ib.invalidate();
+		}
+		if(function.equals("day")) {
+			day = contents.replaceAll("</?current_day>", "");
 		}
 	}
 	
@@ -145,6 +169,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	private Runnable mUpdateTimeRequest = new Runnable() {
 		public void run() {
 			new CommunicationClass(MainActivity.this, "time", "GET");
+            new CommunicationClass(MainActivity.this, "day", "GET");
 		}
 	};
 	
