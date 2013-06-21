@@ -98,4 +98,14 @@
         android:textOn="YES"
         tools:ignore="HardcodedText" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView2"
+        android:text="Tap temperature to change it"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="10sp" />
+
 </RelativeLayout>
