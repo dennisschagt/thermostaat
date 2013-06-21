@@ -54,6 +54,7 @@ public class PickTemperature extends DialogFragment implements NumberPicker.OnVa
 	    t1.setMaxValue(30);
 	    t1.setValue(Integer.parseInt(settingTemperature.substring(0, settingTemperature.indexOf("."))));
 	    t1.setWrapSelectorWheel(false);
+	    t1.setOnValueChangedListener(this);
 	    
 	    NumberPicker t2 = (NumberPicker) view.findViewById(R.id.tempDigitNumberPicker);
 	    t2.setMinValue(0);
@@ -61,13 +62,18 @@ public class PickTemperature extends DialogFragment implements NumberPicker.OnVa
 	    t2.setValue(Integer.parseInt(settingTemperature.substring(settingTemperature.indexOf(".")+1)));
 	    t2.setOnValueChangedListener(this);
 		
+	    
 		return builder.create();
 	}
 
 	@Override
 	public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-		if(picker==view.findViewById(R.id.tempDigitNumberPicker)) {
-			NumberPicker t1 = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
+		NumberPicker t1 = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
+		NumberPicker t2 = (NumberPicker) view.findViewById(R.id.tempDigitNumberPicker);
+		if(picker==t1 && newVal==30) {
+			t2.setValue(0);
+		}
+		if(picker==t2) {
 			if(oldVal==9 && newVal==0) {
 				int t1Value = t1.getValue();
 				if(t1Value<30) {

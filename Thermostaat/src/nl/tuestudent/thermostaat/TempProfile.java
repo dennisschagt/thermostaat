@@ -28,6 +28,7 @@ public class TempProfile extends Activity implements CommunicationClass.SubmitRe
 		t1.setMaxValue(30);
 		t1.setValue(Integer.parseInt(dayTemp.substring(0, dayTemp.indexOf("."))));
 		t1.setWrapSelectorWheel(false);
+		t1.setOnValueChangedListener(this);
 		t2 = (NumberPicker) this.findViewById(R.id.numberPicker2);
 		t2.setMinValue(0);
 		t2.setMaxValue(9);
@@ -38,6 +39,7 @@ public class TempProfile extends Activity implements CommunicationClass.SubmitRe
 		t3.setMaxValue(30);
 		t3.setValue(Integer.parseInt(nightTemp.substring(0, nightTemp.indexOf("."))));
 		t3.setWrapSelectorWheel(false);
+		t3.setOnValueChangedListener(this);
 		t4 = (NumberPicker) this.findViewById(R.id.numberPicker4);
 		t4.setMinValue(0);
 		t4.setMaxValue(9);
@@ -62,8 +64,14 @@ public class TempProfile extends Activity implements CommunicationClass.SubmitRe
 
 	@Override
 	public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-		if(picker==this.findViewById(R.id.numberPicker2)) {
-			NumberPicker t1 = (NumberPicker) this.findViewById(R.id.numberPicker1);
+		NumberPicker t1 = (NumberPicker) this.findViewById(R.id.numberPicker1);
+		NumberPicker t2 = (NumberPicker) this.findViewById(R.id.numberPicker2);
+		NumberPicker t3 = (NumberPicker) this.findViewById(R.id.numberPicker3);
+		NumberPicker t4 = (NumberPicker) this.findViewById(R.id.numberPicker4);
+		if(picker==t1 && newVal==30) {
+			t2.setValue(0);
+		}
+		if(picker==t2) {
 			if(oldVal==9 && newVal==0) {
 				int t1Value = t1.getValue();
 				if(t1Value<30) {
@@ -80,21 +88,23 @@ public class TempProfile extends Activity implements CommunicationClass.SubmitRe
 				picker.setValue(0);
 			}
 		}
-		if(picker==this.findViewById(R.id.numberPicker4)) {
-			NumberPicker t1 = (NumberPicker) this.findViewById(R.id.numberPicker3);
+		if(picker==t3 && newVal==30) {
+			t4.setValue(0);
+		}
+		if(picker==t4) {;
 			if(oldVal==9 && newVal==0) {
-				int t1Value = t1.getValue();
-				if(t1Value<30) {
-					t1.setValue(t1Value+1);
+				int t3Value = t3.getValue();
+				if(t3Value<30) {
+					t3.setValue(t3Value+1);
 				}
 			}
 			if(oldVal==0 && newVal==9) {
-				int t1Value = t1.getValue();
-				if(t1Value>5) {
-					t1.setValue(t1Value-1);
+				int t3Value = t3.getValue();
+				if(t3Value>5) {
+					t3.setValue(t3Value-1);
 				}
 			}
-			if(t1.getValue()==30) {
+			if(t3.getValue()==30) {
 				picker.setValue(0);
 			}
 		}
