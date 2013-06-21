@@ -136,13 +136,18 @@ public class DayProgram implements CommunicationClass.SubmitResult {
 	}
 
 	public String getTypeAtTime(int hour, int min) {
+		String type = "night";
 		for(ProgramSwitch ps : switches ) {
-			if(ps.getHour() == hour && ps.getMin() <= min) {
-				return ps.getType();
+			if(!ps.getState().equals("on")) {
+				continue;
+			}
+			
+			if(ps.getHour() <= hour && ps.getMin() <= min) {
+				type = ps.getType();
 			}
 		}
 		
-		return "night";
+		return type;
 	}
 
 }
