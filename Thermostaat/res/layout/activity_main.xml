@@ -38,7 +38,7 @@
         android:layout_alignRight="@+id/button1"
         android:clickable="true"
         android:onClick="tempChange"
-        android:text="setting: 21\u2103"
+        android:text="setting: 14\u2103"
         android:textAppearance="?android:attr/textAppearanceSmall"
         tools:ignore="HardcodedText" />
 

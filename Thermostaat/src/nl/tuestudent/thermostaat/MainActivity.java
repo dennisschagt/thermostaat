@@ -23,6 +23,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	public static WeekProgram weekProg = null;
 	String weekProgram = null; // XML
 	String currentTemperature = null; // XML
+	String currentTime = "<time>00:00</time>"; // XML
 	Boolean weekProgramState = false; // true=on, false=off
 	Boolean activityInFront = false;
 	String settingTemperature = "14.0";
@@ -30,6 +31,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	TextView statusTV;
 	TextView currentTempTV;
 	TextView tempSettingTV;
+	TextView timeTV;
 	
 	private Handler mHandler = new Handler();
 	
@@ -90,6 +92,20 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 				}
 			}
 		}
+		if(function.equals("time")) {
+			if(method.equals("GET")) {
+				if(contents.equals("Error")) {
+					statusTV.setText("Error obtaining the current time");
+				} else {
+					currentTime = contents;
+					timeTV.setText(currentTime);
+				}
+				if(activityInFront) {
+					mHandler.removeCallbacks(mUpdateTimeRequest);
+					mHandler.postDelayed(mUpdateTimeRequest, 1000);
+				}
+			}
+		}
 	}
 	
 	private Runnable mUpdateTempRequest = new Runnable() {
@@ -98,7 +114,11 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		}
 	};
 
-	
+	private Runnable mUpdateTimeRequest = new Runnable() {
+		public void run() {
+			new CommunicationClass(MainActivity.this, "time", "GET");
+		}
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +135,8 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		statusTV = (TextView) findViewById(R.id.statusTextView);
 		currentTempTV = (TextView) findViewById(R.id.day_spacer);
 		tempSettingTV = (TextView) findViewById(R.id.textView2);
+		timeTV = (TextView) findViewById(R.id.textViewTime);
+		timeTV.setText(currentTime);
 		
 		//get all the week program info
 		weekProg = new WeekProgram();
@@ -136,6 +158,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	protected void onPause() {
 		super.onPause();
 		mHandler.removeCallbacks(mUpdateTempRequest);
+		mHandler.removeCallbacks(mUpdateTimeRequest);
 		activityInFront = false;
 	}
 	
@@ -144,6 +167,8 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		super.onResume();
 		// Request for currentTemperature
         new CommunicationClass(this, "currentTemperature", "GET");
+        // Request for current time
+        new CommunicationClass(this, "time", "GET");
         activityInFront = true;
 	}
 	
