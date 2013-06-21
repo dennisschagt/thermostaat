@@ -53,6 +53,11 @@ public class RowAdapter extends ArrayAdapter<String> {
     	holder.text.setTextColor(ColorStateList.valueOf(0xFFF5F5F5));//0xF5F5F5 = WhiteSmoke
     }
 
+    if(switches[position].getState().equals("off")) {
+    	rowView.setBackgroundDrawable(rowView.getResources().getDrawable((R.drawable.background_disabled)));
+    	holder.text.setTextColor(ColorStateList.valueOf(0xFFF5F5F5));//0xF5F5F5 = WhiteSmoke
+    }
+    
     return rowView;
   }
 } 
