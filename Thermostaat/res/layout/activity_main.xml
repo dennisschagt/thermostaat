@@ -7,19 +7,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:checked="true"
-        android:onClick="switchSetWeekProgram"
-        android:text="Use weekprogram"
-        android:textOff="NO"
-        android:textOn="YES"
-        tools:ignore="HardcodedText" />
     
     <TextView
         android:id="@+id/statusTextView"
@@ -38,8 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/switch1"
+        android:contentDescription="day/night"
         android:onClick="tempChange"
-        android:src="@android:drawable/ic_menu_compass" android:contentDescription="day/night"/>
+        android:src="@android:drawable/ic_menu_compass"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView2"
@@ -85,5 +74,29 @@
         android:layout_alignParentRight="true"
         android:onClick="btnChangeWeekProgram"
         android:text="@string/changeWeekprogram" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Time"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="HardcodedText" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textViewTime"
+        android:checked="true"
+        android:onClick="switchSetWeekProgram"
+        android:text="Use weekprogram"
+        android:textOff="NO"
+        android:textOn="YES"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

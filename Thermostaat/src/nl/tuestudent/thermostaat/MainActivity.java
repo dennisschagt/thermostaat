@@ -16,24 +16,31 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult{
+public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult, PickTemperature.OnTemperatureSelected{
 	
 	public static WeekProgram weekProg = null;
 	String weekProgram = null; // XML
 	String currentTemperature = null; // XML
 	Boolean weekProgramState = false; // true=on, false=off
 	Boolean activityInFront = false;
+	String settingTemperature = "14.0";
 	
 	TextView statusTV;
 	TextView currentTempTV;
-	Switch weekProgramSW;
+	TextView tempSettingTV;
 	
 	private Handler mHandler = new Handler();
 	
-	//TODO move all networking code to WeekProgram if possible
+	@Override
+	public void submitTemperature(String temperature) {
+		settingTemperature = temperature;
+		tempSettingTV.setText("Setting: "+temperature);
+		new CommunicationClass(this, "currentTemperature", "PUT", "<current_temperature>" + temperature +  "</current_temperature>");
+	}
+	
+	// TODO move all networking code to WeekProgram if possible
 	
 	@Override
 	public void submitResult(String function, String method, String contents) {
@@ -57,7 +64,8 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 					} else {
 						weekProgramState = false;
 					}
-					weekProgramSW.setChecked(weekProgramState);
+					final Switch s = (Switch)findViewById(R.id.switch1);
+					s.setChecked(weekProgramState);
 					// Request for weekProgram
 					statusTV.setText("Retrieving week program");
 		            new CommunicationClass(this, "weekProgram", "GET");
@@ -92,16 +100,21 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 
 	
 	
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		final Switch s = (Switch)findViewById(R.id.switch1);
+		s.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				switchSetWeekProgram(s);
+			}
+		});
 			
 		statusTV = (TextView) findViewById(R.id.statusTextView);
 		currentTempTV = (TextView) findViewById(R.id.day_spacer);
-		weekProgramSW = (Switch) findViewById(R.id.switch1);
+		tempSettingTV = (TextView) findViewById(R.id.textView2);
 		
 		//get all the week program info
 		weekProg = new WeekProgram();
@@ -117,19 +130,6 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
         } else {
         	statusTV.setText("No network connection available");
         }
-        
-        weekProgramSW.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String command;
-                if(isChecked) {
-                	command = "<week_program_state>on</week_program_state>";
-                } else {
-                	command = "<week_program_state>off</week_program_state>";
-                }
-                new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", command);
-                switchSetWeekProgram(weekProgramSW);
-            }
-        });
 	}
 	
 	@Override
@@ -155,7 +155,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	public void switchSetWeekProgram(View view) {
 		boolean on = ((Switch) view).isChecked();
 		
-		Toast t = Toast.makeText(this, "", 10);
+		Toast t = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 		t.setGravity(Gravity.CENTER, 0, 0);
 		if(on) {
 			t.setText(R.string.toggle_weekprogram_on);
@@ -163,6 +163,14 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 			t.setText(R.string.toggle_weekprogram_off);
 		}
 		t.show();
+		
+		String xmlCommand;
+		if(on) {
+			xmlCommand = "<week_program_state>on</week_program_state>";
+		} else {
+			xmlCommand = "<week_program_state>off</week_program_state>";
+		}
+		new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", xmlCommand);
 	}
 
 	@Override
@@ -174,6 +182,9 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	
 	public void tempChange(View view) {
 		    DialogFragment tempFragment = new PickTemperature();
+		    Bundle args = new Bundle();
+		    args.putString("settingTemperature", settingTemperature);
+		    tempFragment.setArguments(args);
 		    tempFragment.show(getSupportFragmentManager(), "thermostaat");
 	}
 	
