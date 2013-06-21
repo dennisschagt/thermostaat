@@ -35,7 +35,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	String nightTemperature = "<night_temperature>16.5</night_temperature>"; // XML
 	Boolean weekProgramState = false; // true=on, false=off
 	Boolean activityInFront = false;
-	String settingTemperature = "14.0";
+	String settingTemperature = "";
 	
 	TextView statusTV;
 	TextView currentTempTV;
@@ -210,6 +210,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
         } else {
         	statusTV.setText("No network connection available");
         }
+        tempSettingTV.setVisibility(View.INVISIBLE);
 	}
 	
 	@Override
@@ -251,9 +252,11 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		if(on) {
 			weekProgramState = true;
 			xmlCommand = "<week_program_state>on</week_program_state>";
+			tempSettingTV.setVisibility(View.INVISIBLE);
 		} else {
 			weekProgramState = false;
 			xmlCommand = "<week_program_state>off</week_program_state>";
+			tempSettingTV.setVisibility(View.VISIBLE);
 		}
 		new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", xmlCommand);
 	}

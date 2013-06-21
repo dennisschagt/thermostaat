@@ -19,7 +19,10 @@ public class PickTemperature extends DialogFragment implements NumberPicker.OnVa
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		final String settingTemperature = getArguments().getString("settingTemperature");
+		String settingTemperature = getArguments().getString("settingTemperature");
+		if(settingTemperature==null || settingTemperature=="") {
+			settingTemperature = "15.0";
+		}
 		
 	    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 	    // Get the layout inflater
