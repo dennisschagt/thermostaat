@@ -104,7 +104,6 @@ public class LazyAdapter extends ArrayAdapter<String>{
 			dnText.setText(String.format("%02d:%02d", ps.getHour(), ps.getMin()));
 			dnText.invalidate();
 			//TODO plaatje
-			Log.d("weekProgam", "in if statment");
 
 			prevSwitch = ps;
 		}
