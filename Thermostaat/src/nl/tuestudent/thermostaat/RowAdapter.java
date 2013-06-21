@@ -60,4 +60,11 @@ public class RowAdapter extends ArrayAdapter<String> {
     
     return rowView;
   }
+  
+  
+ @Override
+ public void notifyDataSetChanged() {
+	 //TODO sort here
+	 super.notifyDataSetChanged();
+ }
 } 
