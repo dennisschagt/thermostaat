@@ -53,6 +53,7 @@ public final class R {
         public static final int DarkSlateGray=0x7f040076;
         public static final int DarkTurquoise=0x7f040081;
         public static final int DarkViolet=0x7f040053;
+        public static final int Day=0x7f04008c;
         public static final int DeepPink=0x7f04001b;
         public static final int DeepSkyBlue=0x7f040082;
         public static final int DimGray=0x7f040069;
@@ -111,6 +112,7 @@ public final class R {
         public static final int Moccasin=0x7f04000e;
         public static final int NavajoWhite=0x7f04000f;
         public static final int Navy=0x7f04008a;
+        public static final int Night=0x7f04008d;
         public static final int OldLace=0x7f04001f;
         public static final int Olive=0x7f04005e;
         public static final int OliveDrab=0x7f040067;
@@ -169,54 +171,61 @@ public final class R {
     public static final class drawable {
         public static final int background_day=0x7f020000;
         public static final int background_night=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
+        public static final int dag=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int nacht=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0023;
-        public static final int button1=0x7f0a0019;
-        public static final int button2=0x7f0a001a;
-        public static final int button_change_friday=0x7f0a0013;
-        public static final int button_change_monday=0x7f0a000f;
-        public static final int button_change_saturday=0x7f0a0014;
-        public static final int button_change_sunday=0x7f0a000e;
-        public static final int button_change_thursday=0x7f0a0012;
-        public static final int button_change_tuesday=0x7f0a0010;
-        public static final int button_change_wednesday=0x7f0a0011;
-        public static final int dayLayout=0x7f0a0022;
+        public static final int action_settings=0x7f0a0026;
+        public static final int button1=0x7f0a001a;
+        public static final int button2=0x7f0a001b;
+        public static final int button_change_friday=0x7f0a0014;
+        public static final int button_change_monday=0x7f0a0010;
+        public static final int button_change_saturday=0x7f0a0015;
+        public static final int button_change_sunday=0x7f0a000f;
+        public static final int button_change_thursday=0x7f0a0013;
+        public static final int button_change_tuesday=0x7f0a0011;
+        public static final int button_change_wednesday=0x7f0a0012;
+        public static final int dayLayout=0x7f0a0024;
         public static final int dayNightButton=0x7f0a0017;
-        public static final int dayNightImg=0x7f0a0021;
-        public static final int dayNightText=0x7f0a0020;
-        public static final int day_spacer=0x7f0a0018;
-        public static final int label=0x7f0a001e;
+        public static final int dayNightImg=0x7f0a0023;
+        public static final int dayNightText=0x7f0a0022;
+        public static final int day_spacer=0x7f0a0019;
+        public static final int label=0x7f0a0020;
         public static final int linearLayout1=0x7f0a0002;
         public static final int linearLayout2=0x7f0a0008;
-        public static final int nightLayout=0x7f0a001f;
+        public static final int nightLayout=0x7f0a0021;
         public static final int numberPicker1=0x7f0a0004;
         public static final int numberPicker2=0x7f0a0006;
         public static final int numberPicker3=0x7f0a000a;
         public static final int numberPicker4=0x7f0a000c;
+        public static final int saveAndReturn=0x7f0a000e;
         public static final int statusTextView=0x7f0a0016;
-        public static final int switch1=0x7f0a0015;
+        public static final int sunMoon=0x7f0a0025;
+        public static final int switch1=0x7f0a0018;
         public static final int t_day_name=0x7f0a0000;
-        public static final int tempDigitNumberPicker=0x7f0a001d;
-        public static final int tempNumberPicker=0x7f0a001c;
+        public static final int tempDigitNumberPicker=0x7f0a001f;
+        public static final int tempNumberPicker=0x7f0a001e;
         public static final int textView1=0x7f0a0003;
         public static final int textView2=0x7f0a0005;
         public static final int textView3=0x7f0a0009;
         public static final int textView4=0x7f0a000b;
         public static final int textView5=0x7f0a0007;
         public static final int textView6=0x7f0a000d;
+        public static final int textViewTime=0x7f0a001c;
         public static final int timeList=0x7f0a0001;
-        public static final int timePicker2=0x7f0a001b;
+        public static final int timePicker2=0x7f0a001d;
     }
     public static final class layout {
         public static final int activity_change_day=0x7f030000;
-        public static final int activity_change_temp_profile=0x7f030001;
-        public static final int activity_change_weekprogram=0x7f030002;
-        public static final int activity_main=0x7f030003;
-        public static final int dialog_pick_day_night=0x7f030004;
-        public static final int dialog_pick_temperature=0x7f030005;
-        public static final int row_change_day=0x7f030006;
+        public static final int activity_change_day_2=0x7f030001;
+        public static final int activity_change_temp_profile=0x7f030002;
+        public static final int activity_change_weekprogram=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int dialog_pick_day_night=0x7f030005;
+        public static final int dialog_pick_temperature=0x7f030006;
+        public static final int row_change_day=0x7f030007;
+        public static final int rowlayout=0x7f030008;
     }
     public static final class menu {
         public static final int change_day=0x7f090000;

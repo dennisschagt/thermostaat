@@ -1,5 +1,6 @@
 package nl.tuestudent.thermostaat;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.NumberPicker;
@@ -14,25 +15,32 @@ public class TempProfile extends Activity implements CommunicationClass.SubmitRe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_change_temp_profile);
 		
+		// Get the message from the intent
+	    Intent intent = getIntent();
+	    String dayTempXML = intent.getStringExtra(MainActivity.DAY_DATA);
+	    String nightTempXML = intent.getStringExtra(MainActivity.NIGHT_DATA);
+	    String dayTemp = dayTempXML.replaceAll("</?day_temperature>", "");
+	    String nightTemp = nightTempXML.replaceAll("</?night_temperature>", "");
+	    
 		// TODO: Set the numberpickers to the current day/night temperature
 		t1 = (NumberPicker) this.findViewById(R.id.numberPicker1);
 		t1.setMinValue(5);
 		t1.setMaxValue(30);
-		t1.setValue(19);
+		t1.setValue(Integer.parseInt(dayTemp.substring(0, dayTemp.indexOf("."))));
 		t1.setWrapSelectorWheel(false);
 		t2 = (NumberPicker) this.findViewById(R.id.numberPicker2);
 		t2.setMinValue(0);
 		t2.setMaxValue(9);
-		t2.setValue(5);
+		t2.setValue(Integer.parseInt(dayTemp.substring(dayTemp.indexOf(".")+1)));
 		t3 = (NumberPicker) this.findViewById(R.id.numberPicker3);
 		t3.setMinValue(5);
 		t3.setMaxValue(30);
-		t3.setValue(16);
+		t3.setValue(Integer.parseInt(nightTemp.substring(0, nightTemp.indexOf("."))));
 		t3.setWrapSelectorWheel(false);
 		t4 = (NumberPicker) this.findViewById(R.id.numberPicker4);
 		t4.setMinValue(0);
 		t4.setMaxValue(9);
-		t4.setValue(5);
+		t4.setValue(Integer.parseInt(nightTemp.substring(nightTemp.indexOf(".")+1)));
 	}
 
 	public void onSaveAndReturn(View view) {

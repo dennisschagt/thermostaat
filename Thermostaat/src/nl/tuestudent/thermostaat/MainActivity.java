@@ -19,12 +19,16 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult, PickTemperature.OnTemperatureSelected{
+	public final static String DAY_DATA = "nl.tuestudent.thermostaat.DAY_DATA_MESSAGE";
+	public final static String NIGHT_DATA = "nl.tuestudent.thermostaat.NIGHT_DATA_MESSAGE";
 	
 	public static WeekProgram weekProg = null;
 	
 	String weekProgram = null; // XML
 	String currentTemperature = null; // XML
 	String currentTime = "<time>00:00</time>"; // XML
+	String dayTemperature = "<day_temperature>19.5</day_temperature>"; // XML
+	String nightTemperature = "<night_temperature>16.5</night_temperature>"; // XML
 	Boolean weekProgramState = false; // true=on, false=off
 	Boolean activityInFront = false;
 	String settingTemperature = "14.0";
@@ -47,6 +51,29 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	
 	@Override
 	public void submitResult(String function, String method, String contents) {
+		//dayTemperature
+		if(function.equals("dayTemperature")) {
+			if(method.equals("GET")) {
+				if(contents.equals("Error")) {
+					Toast.makeText(this, "Error obtaining the day temperature", Toast.LENGTH_SHORT).show();
+				} else {
+					dayTemperature = contents;
+					// Toast.makeText(this, "day temperature obtained", Toast.LENGTH_SHORT).show();
+				}
+			}
+		}
+		//nightTemperature
+		if(function.equals("nightTemperature")) {
+			if(method.equals("GET")) {
+				if(contents.equals("Error")) {
+					Toast.makeText(this, "Error obtaining the night temperature", Toast.LENGTH_SHORT).show();
+				} else {
+					nightTemperature = contents;
+					// Toast.makeText(this, "night temperature obtained", Toast.LENGTH_SHORT).show();
+				}
+			}
+		}
+		// weekProgram
 		if(function.equals("weekProgram")) {
 			if(method.equals("GET")) {
 				if(contents.equals("Error")) {
@@ -99,7 +126,7 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 					statusTV.setText("Error obtaining the current time");
 				} else {
 					currentTime = contents;
-					timeTV.setText(currentTime);
+					timeTV.setText("Time: " + currentTime.replaceAll("</?time>", ""));
 				}
 				if(activityInFront) {
 					mHandler.removeCallbacks(mUpdateTimeRequest);
@@ -137,12 +164,15 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		currentTempTV = (TextView) findViewById(R.id.day_spacer);
 		tempSettingTV = (TextView) findViewById(R.id.textView2);
 		timeTV = (TextView) findViewById(R.id.textViewTime);
-		timeTV.setText(currentTime);
+		timeTV.setText("Time: " + currentTime.replaceAll("</?time>", ""));
 		
 		//get all the week program info
 		weekProg = new WeekProgram();
-		
-		
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
 		// Check network status
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -150,6 +180,8 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
             statusTV.setText("Retrieving week program state");
             // Request for weekProgramState
             new CommunicationClass(this, "weekProgramState", "GET");
+            new CommunicationClass(this, "dayTemperature", "GET");
+            new CommunicationClass(this, "nightTemperature", "GET");
         } else {
         	statusTV.setText("No network connection available");
         }
@@ -203,19 +235,21 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		return false; // Return true to make the menu visible
 	}
 	
 	public void tempChange(View view) {
-		    DialogFragment tempFragment = new PickTemperature();
-		    Bundle args = new Bundle();
-		    args.putString("settingTemperature", settingTemperature);
-		    tempFragment.setArguments(args);
-		    tempFragment.show(getSupportFragmentManager(), "thermostaat");
+		DialogFragment tempFragment = new PickTemperature();
+		Bundle args = new Bundle();
+		args.putString("settingTemperature", settingTemperature);
+		tempFragment.setArguments(args);
+		tempFragment.show(getSupportFragmentManager(), "thermostaat");
 	}
 	
 	public void setTempProfile(View view) {
 		Intent intent = new Intent (this, TempProfile.class);
+		intent.putExtra(DAY_DATA, dayTemperature);
+		intent.putExtra(NIGHT_DATA, nightTemperature);
 		startActivity(intent);
 	}
 
