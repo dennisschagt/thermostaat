@@ -94,7 +94,7 @@
         android:layout_alignRight="@+id/switch1"
         android:clickable="true"
         android:onClick="tempChange"
-        android:text="Text"
+        android:text="Setting: -"
         android:textAppearance="?android:attr/textAppearanceSmall"
         tools:ignore="HardcodedText" />
 
