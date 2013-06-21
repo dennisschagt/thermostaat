@@ -136,7 +136,6 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 					mHandler.removeCallbacks(mUpdateTimeRequest);
 					mHandler.postDelayed(mUpdateTimeRequest, 1000);
 				}
-			ImageButton ib = (ImageButton)findViewById(R.id.dayNightButton);
 			DayProgram dp = weekProg.findDayProgram(day);
 			String[] hourmin = time.split(":");
 			int hour= Integer.parseInt(hourmin[0]);
@@ -144,12 +143,14 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 
 			String type = dp.getTypeAtTime(hour, min);
 			
-			if(type.equals("day")) {
-				ib.setImageDrawable(getResources().getDrawable(R.drawable.dag));
+			ImageButton ib = (ImageButton) findViewById(R.id.dayNightButton);
+			if(weekProgramState) {
+				if(type.equals("day")) {
+					ib.setImageDrawable(getResources().getDrawable(R.drawable.dag));
+				} else {
+					ib.setImageDrawable(getResources().getDrawable(R.drawable.nacht));
+				}
 			} else {
-				ib.setImageDrawable(getResources().getDrawable(R.drawable.nacht));
-			}
-			if(!weekProgramState) {
 				ib.setImageDrawable(getResources().getDrawable(R.drawable.vakantie));
 			}
 			ib.invalidate();
@@ -248,8 +249,10 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		
 		String xmlCommand;
 		if(on) {
+			weekProgramState = true;
 			xmlCommand = "<week_program_state>on</week_program_state>";
 		} else {
+			weekProgramState = false;
 			xmlCommand = "<week_program_state>off</week_program_state>";
 		}
 		new CommunicationClass(MainActivity.this, "weekProgramState", "PUT", xmlCommand);
