@@ -23,7 +23,7 @@ import android.widget.TextView;
 public class ChangeDay extends FragmentActivity {
 	
 	String dayName;
-	DayProgram dayProgram;
+	public static DayProgram dayProgram;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -73,6 +73,19 @@ public class DayProgram implements CommunicationClass.SubmitResult {
 		this.switches = switches;
 	}
 
+	//returns switch occuring in hour
+	public ProgramSwitch getSwitchByHour(int hour) {
+		for(ProgramSwitch ps : switches) {
+			if(ps.getHour() == hour) {
+				return ps;
+			} else if(ps.getHour() > hour) {
+				//already past a transition
+				return null;
+			}
+		}
+		return null;
+	}
+	
 	private void parseXMLLines(String[] dayXMLLines) {
 		for(int i=1; i < dayXMLLines.length - 1 ;i++) { //last element of array seems to be empty so omitting that
 			String line = dayXMLLines[i];

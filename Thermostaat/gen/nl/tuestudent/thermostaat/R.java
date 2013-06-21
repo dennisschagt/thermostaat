@@ -184,9 +184,9 @@ public final class R {
         public static final int button_change_wednesday=0x7f0a0011;
         public static final int dayLayout=0x7f0a0022;
         public static final int dayNightButton=0x7f0a0017;
+        public static final int dayNightImg=0x7f0a0021;
         public static final int dayNightText=0x7f0a0020;
         public static final int day_spacer=0x7f0a0018;
-        public static final int imageView1=0x7f0a0021;
         public static final int label=0x7f0a001e;
         public static final int linearLayout1=0x7f0a0002;
         public static final int linearLayout2=0x7f0a0008;
