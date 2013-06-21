@@ -4,6 +4,7 @@ import nl.tuestudent.thermostaat.R.color;
 import nl.tuestudent.thermostaat.data.DayProgram.ProgramSwitch;
 import android.app.Activity;
 import android.content.res.ColorStateList;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,13 +68,16 @@ public class RowAdapter extends ArrayAdapter<String> {
 	 //TODO make this quicksort
 	 for(int i=0; i < switches.length ;i++) {
 		 for(int x=i; x < switches.length; x++) {
-			 if(switches[i].getHour() <= switches[x].getHour()
-				&& switches[i].getMin() < switches[x].getMin()) {
+			 if(switches[i].getHour() >= switches[x].getHour()
+				&& switches[i].getMin() >= switches[x].getMin()) {
 				 ProgramSwitch y = switches[i];
 				 switches[i] = switches[x];
 				 switches[x] = y;
 			 }
 		 }
+	 }
+	 for(ProgramSwitch s : switches) {
+		 Log.d("asdf", "" + s.getHour() + ":"+ s.getMin());
 	 }
 	 super.notifyDataSetChanged();
  }

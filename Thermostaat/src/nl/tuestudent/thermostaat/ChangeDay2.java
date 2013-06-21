@@ -1,6 +1,7 @@
 package nl.tuestudent.thermostaat;
 
 import nl.tuestudent.thermostaat.PickDayNight.PickDayNightFinishListener;
+import nl.tuestudent.thermostaat.PickTemperature.OnTemperatureSelected;
 import nl.tuestudent.thermostaat.data.DayProgram;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -13,7 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ChangeDay2 extends FragmentActivity implements PickDayNightFinishListener{
+public class ChangeDay2 extends FragmentActivity implements PickDayNightFinishListener, CommunicationClass.SubmitResult{
 	
 	String dayName;
 	DayProgram dayProgram;
@@ -61,6 +62,21 @@ public class ChangeDay2 extends FragmentActivity implements PickDayNightFinishLi
 	
 	public void onFinish() {
 		//findViewById(android.R.id.list).postInvalidate();
-		((ListView)findViewById(android.R.id.list)).invalidateViews();
+		ListView lv = ((ListView)findViewById(android.R.id.list));
+		RowAdapter ra  = (RowAdapter) lv.getAdapter();
+		ra.notifyDataSetChanged();	
+		lv.invalidateViews();
+		
+		//send stuff to the server
+		String xml = MainActivity.weekProg.toXML();
+		new CommunicationClass(this, "weekProgram", "PUT", xml);
+		
+	}
+
+
+	@Override
+	public void submitResult(String function, String method, String contents) {
+		// TODO Auto-generated method stub
+		
 	}
 }
