@@ -21,6 +21,7 @@ import android.widget.TextView;
 public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult, PickTemperature.OnTemperatureSelected{
 	
 	public static WeekProgram weekProg = null;
+	
 	String weekProgram = null; // XML
 	String currentTemperature = null; // XML
 	String currentTime = "<time>00:00</time>"; // XML
