@@ -60,6 +60,7 @@ public class ChangeDay2 extends FragmentActivity implements PickDayNightFinishLi
 
 	
 	public void onFinish() {
-		findViewById(android.R.id.list).postInvalidate();
+		//findViewById(android.R.id.list).postInvalidate();
+		((ListView)findViewById(android.R.id.list)).invalidateViews();
 	}
 }
