@@ -64,7 +64,17 @@ public class RowAdapter extends ArrayAdapter<String> {
   
  @Override
  public void notifyDataSetChanged() {
-	 //TODO sort here
+	 //TODO make this quicksort
+	 for(int i=0; i < switches.length ;i++) {
+		 for(int x=i; x < switches.length; x++) {
+			 if(switches[i].getHour() <= switches[x].getHour()
+				&& switches[i].getMin() < switches[x].getMin()) {
+				 ProgramSwitch y = switches[i];
+				 switches[i] = switches[x];
+				 switches[x] = y;
+			 }
+		 }
+	 }
 	 super.notifyDataSetChanged();
  }
 } 

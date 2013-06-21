@@ -144,7 +144,6 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 
 			String type = dp.getTypeAtTime(hour, min);
 			
-			Log.d("type",type);
 			if(type.equals("day")) {
 				ib.setImageDrawable(getResources().getDrawable(R.drawable.dag));
 			} else {
