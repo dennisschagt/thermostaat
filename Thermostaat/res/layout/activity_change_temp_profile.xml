@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Day:  "
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            tools:ignore="HardcodedText" />
 
         <NumberPicker
             android:id="@+id/numberPicker1"
@@ -33,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text=","
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            tools:ignore="HardcodedText" />
 
         <NumberPicker
             android:id="@+id/numberPicker2"
@@ -47,7 +49,9 @@
             android:layout_gravity="center"
             android:text="\u2103"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            tools:ignore="HardcodedText" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -91,7 +95,19 @@
             android:layout_gravity="center"
             android:text="\u2103"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            tools:ignore="HardcodedText" />
+
     </LinearLayout>
+    
+    <Button
+		android:id="@+id/saveAndReturn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:text="Save and return"
+		android:onClick="onSaveAndReturn"
+		tools:ignore="HardcodedText" />
 
 </RelativeLayout>
