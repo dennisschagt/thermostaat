@@ -50,6 +50,7 @@ public class RowAdapter extends ArrayAdapter<String> {
     } else {
     	rowView.setBackgroundDrawable(rowView.getResources().getDrawable((R.drawable.background_night)));
     	holder.image.setImageResource(R.drawable.nacht);
+    	holder.text.setTextColor(ColorStateList.valueOf(0xFFF5F5F5));//0xF5F5F5 = WhiteSmoke
     }
 
     return rowView;
