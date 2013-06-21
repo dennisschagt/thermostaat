@@ -9,18 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
 
-public class PickTemperature extends DialogFragment {
+public class PickTemperature extends DialogFragment implements NumberPicker.OnValueChangeListener {
 	
-	static private 	String[] digits = {"0","1","2","3","4","5","6","7","8","9"};
-	static private 	String[] tempRange = null;
-	
-	// I'm lazy
-	private static void createTempRange() {
-		tempRange = new String[25];
-		for(int i = 5; i < 30; i++) {
-			tempRange[i-5] = Integer.toString(i);
-		}
-	}
+	View view;
 	
 	public interface OnTemperatureSelected {
 		void submitTemperature(String temperature);
@@ -34,9 +25,7 @@ public class PickTemperature extends DialogFragment {
 	    // Get the layout inflater
 	    LayoutInflater inflater = getActivity().getLayoutInflater();
 	    final View view = inflater.inflate(R.layout.dialog_pick_temperature, null);
-	    
-	    //be lazy
-	    createTempRange();
+	    this.view = view;
 	    
 	    // Inflate and set the layout for the dialog
 	    // Pass null as the parent view because its going in the dialog layout
@@ -70,18 +59,31 @@ public class PickTemperature extends DialogFragment {
 	    t2.setMinValue(0);
 	    t2.setMaxValue(9);
 	    t2.setValue(Integer.parseInt(settingTemperature.substring(settingTemperature.indexOf(".")+1)));
-
-	    /*//TODO make this work WHY IS IT NOT WORKING
-		NumberPicker t = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
-		t.setMinValue(0);
-		t.setMaxValue(14);
-		t.setDisplayedValues(tempRange);
-		t = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
-		t.setMinValue(0);
-		t.setMaxValue(9);
-		t.setDisplayedValues(digits);*/
+	    t2.setOnValueChangedListener(this);
 		
 		return builder.create();
+	}
+
+	@Override
+	public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+		if(picker==view.findViewById(R.id.tempDigitNumberPicker)) {
+			NumberPicker t1 = (NumberPicker) view.findViewById(R.id.tempNumberPicker);
+			if(oldVal==9 && newVal==0) {
+				int t1Value = t1.getValue();
+				if(t1Value<30) {
+					t1.setValue(t1Value+1);
+				}
+			}
+			if(oldVal==0 && newVal==9) {
+				int t1Value = t1.getValue();
+				if(t1Value>5) {
+					t1.setValue(t1Value-1);
+				}
+			}
+			if(t1.getValue()==30) {
+				picker.setValue(0);
+			}
+		}
 	}
 	
 }
