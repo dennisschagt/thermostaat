@@ -1,5 +1,6 @@
 package nl.tuestudent.thermostaat;
 
+import nl.tuestudent.thermostaat.PickDayNight.PickDayNightFinishListener;
 import nl.tuestudent.thermostaat.data.DayProgram;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -12,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ChangeDay2 extends FragmentActivity {
+public class ChangeDay2 extends FragmentActivity implements PickDayNightFinishListener{
 	
 	String dayName;
 	DayProgram dayProgram;
@@ -57,4 +58,8 @@ public class ChangeDay2 extends FragmentActivity {
 		});
 	}
 
+	
+	public void onFinish() {
+		findViewById(android.R.id.list).postInvalidate();
+	}
 }
