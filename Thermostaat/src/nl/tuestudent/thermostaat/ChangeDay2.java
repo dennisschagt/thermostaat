@@ -44,8 +44,11 @@ public class ChangeDay2 extends FragmentActivity {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 				//show add time menu
-				Log.d("dayProgram", "JE HEBT OP EEN ITEM GECLICKED: " + position);
+				Bundle b = new Bundle();
+				b.putInt("item_position", position);
+				b.putString("day_name", dayName);
 				DialogFragment tempFrag = new PickDayNight();
+				tempFrag.setArguments(b);
 				tempFrag.show(getSupportFragmentManager(), "kjljnjkjhjftfuhjvjuyg");
 				
 				//TODO send the time (position of item you clicked on) to the dialog so it can use that as default dialog

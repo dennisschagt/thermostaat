@@ -22,7 +22,7 @@ public class PickDayNight extends DialogFragment {
 
 	    Bundle args = getArguments();
 	    int position = args.getInt("item_position");
-	    String dayName = args.getString("dayName");
+	    String dayName = args.getString("day_name");
 	    
 	    ProgramSwitch ps = MainActivity.weekProg.findDayProgram(dayName).getSwitches()[position];
 
