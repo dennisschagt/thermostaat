@@ -2,6 +2,9 @@ package nl.tuestudent.thermostaat;
 
 import java.util.ArrayList;
 
+import nl.tuestudent.thermostaat.data.DayProgram;
+import nl.tuestudent.thermostaat.data.DayProgram.ProgramSwitch;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +22,9 @@ import android.widget.TextView;
 
 public class ChangeDay extends FragmentActivity {
 	
+	String dayName;
+	DayProgram dayProgram;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,17 +32,13 @@ public class ChangeDay extends FragmentActivity {
 		
 		// Get the message from the intent
 	    Intent intent = getIntent();
-	    String message = intent.getStringExtra(ChangeWeekprogram.EXTRA_MESSAGE);
+	    dayName = intent.getStringExtra(ChangeWeekprogram.EXTRA_MESSAGE);
 
 	    // Create the text view
 	    TextView textView = (TextView) findViewById(R.id.t_day_name);
-	    textView.setText(message);
-
-	    // Set the text view as the activity layout
-	    //setContentView(textView);
+	    textView.setText(dayName);
 	    
-
-	    
+	    dayProgram = MainActivity.weekProg.findDayProgram(dayName);
 	    populateTimeList();
 	}
 
@@ -54,14 +56,24 @@ public class ChangeDay extends FragmentActivity {
 		}
 		
 		LazyAdapter timeAdapter = new LazyAdapter(this,
-				android.R.layout.simple_list_item_activated_1, timeAL);
+				android.R.layout.simple_list_item_1, timeAL);
 		
 		timeList.setAdapter(timeAdapter);
-		//timeList.setClickable(true);
+		
+		//set day/night colors
+		ProgramSwitch[] switches = dayProgram.getSwitches();
+		for(int i=0; i < switches.length; i++) {
+			ProgramSwitch ps = switches[i];
+			if(ps.getState().equals("off")) {
+				continue;
+			}
+			if(ps.getType().equals("day")) {
+				timeAdapter.getItem(ps.getHour());
+			}
+		}
 		
 		
-		//item click handler
-		
+		//item click handler	
 		timeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			
 			@Override

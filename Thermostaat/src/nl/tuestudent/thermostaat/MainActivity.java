@@ -20,6 +20,8 @@ import android.widget.ToggleButton;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements CommunicationClass.SubmitResult{
+	
+	public static WeekProgram weekProg = null;
 	String weekProgram = null; // XML
 	String currentTemperature = null; // XML
 	Boolean weekProgramState = false; // true=on, false=off
@@ -30,6 +32,8 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 	Switch weekProgramSW;
 	
 	private Handler mHandler = new Handler();
+	
+	//TODO move all networking code to WeekProgram if possible
 	
 	@Override
 	public void submitResult(String function, String method, String contents) {
@@ -99,7 +103,9 @@ public class MainActivity extends FragmentActivity implements CommunicationClass
 		currentTempTV = (TextView) findViewById(R.id.day_spacer);
 		weekProgramSW = (Switch) findViewById(R.id.switch1);
 		
-		WeekProgram wp = new WeekProgram();
+		//get all the week program info
+		weekProg = new WeekProgram();
+		
 		
 		// Check network status
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
