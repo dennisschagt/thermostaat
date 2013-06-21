@@ -15,6 +15,7 @@ import android.util.Log;
 public class WeekProgram implements CommunicationClass.SubmitResult {
 	
 	private HashMap<String, DayProgram> days = new HashMap<String, DayProgram>();
+	String state;
 	
 	public WeekProgram() {
 		getWeekProgram();
@@ -30,6 +31,13 @@ public class WeekProgram implements CommunicationClass.SubmitResult {
 
 
 	private void parseWeekProgram(String contents) {
+		
+		state = "off";
+		int ind = contents.indexOf('=');
+		if(contents.charAt(ind + 2) == 'n') {
+			state = "on";
+		}
+		
 		//Using a real XML parser is lots of code ... using regexps instead
 		String[] dayArray = contents.replaceAll("<week.+?\">","").split("(?=<day)");
 		// newline at line 1 does not get deleted (and can't get it to work..) therefore I'll just ignore 
@@ -53,5 +61,15 @@ public class WeekProgram implements CommunicationClass.SubmitResult {
 				parseWeekProgram(contents);
 			}
 		}	
+	}
+	
+	public String toXML() {
+		String ret = "<week_program state = \"" + this.state + "\">\n";
+		for(String day : days.keySet()) {
+			DayProgram dp = days.get(day);
+			ret += dp.toXML();
+		}
+		ret += "</week_program>\n";
+		return ret;
 	}
 }
