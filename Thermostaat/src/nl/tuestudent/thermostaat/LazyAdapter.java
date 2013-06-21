@@ -108,9 +108,6 @@ public class LazyAdapter extends ArrayAdapter<String>{
 			prevSwitch = ps;
 		}
 
-
-		//String s = values[position];
-
 		return rowView;
 	}
 }
