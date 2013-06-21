@@ -57,6 +57,7 @@ public class LazyAdapter extends ArrayAdapter<String>{
 		return true;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -95,10 +96,10 @@ public class LazyAdapter extends ArrayAdapter<String>{
 		if(ps.getHour() == position) {
 			Log.d("LazyAdapter", "ps.hour: " + ps.getHour() + " pos: " + position);
 			if(ps.getType().equals("day")) {
-				night.setBackground(daybg);
+				night.setBackgroundDrawable(daybg);
 				dnText.setTextColor(Color.BLACK);
 			} else {
-				night.setBackground(nightbg);
+				night.setBackgroundDrawable(nightbg);
 				dnText.setTextColor(Color.WHITE);
 			}
 			dnText.setText(String.format("%02d:%02d", ps.getHour(), ps.getMin()));

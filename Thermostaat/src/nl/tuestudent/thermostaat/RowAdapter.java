@@ -3,6 +3,7 @@ package nl.tuestudent.thermostaat;
 import nl.tuestudent.thermostaat.R.color;
 import nl.tuestudent.thermostaat.data.DayProgram.ProgramSwitch;
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,8 @@ public class RowAdapter extends ArrayAdapter<String> {
     this.switches = switches;
   }
 
-  @Override
+  @SuppressWarnings("deprecation")
+@Override
   public View getView(int position, View convertView, ViewGroup parent) {
     View rowView = convertView;
     if (rowView == null) {
@@ -43,12 +45,11 @@ public class RowAdapter extends ArrayAdapter<String> {
     holder.text.setText(s);
     
     if(switches[position].getType().equals("day")) {
-    	rowView.setBackground(rowView.getResources().getDrawable((R.drawable.background_day)));
+    	rowView.setBackgroundDrawable(rowView.getResources().getDrawable((R.drawable.background_day)));
     	holder.image.setImageResource(R.drawable.dag);
     } else {
-    	rowView.setBackground(rowView.getResources().getDrawable((R.drawable.background_night)));
+    	rowView.setBackgroundDrawable(rowView.getResources().getDrawable((R.drawable.background_night)));
     	holder.image.setImageResource(R.drawable.nacht);
-    	holder.text.setTextColor(color.WhiteSmoke);
     }
 
     return rowView;
